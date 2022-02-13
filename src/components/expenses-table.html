@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../src/scss/history.css">
+  <title>Financial Apps</title>
+</head>
+<body>
+  <div class="history">
+    <div class="history__table">
+      <div class="history__table-header">
+        <p class="history__table-header-text">Date</p>
+        <p class="history__table-header-text">Description</p>
+        <p class="history__table-header-text">Source</p>
+        <p class="history__table-header-text">Amount</p>
+      </div>
+      <div class="history__table-body">
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="../../index.js"></script> 
+<script type="text/javascript">
+
+  function setIncomeData() {
+    let ExpensesData = globalExpensesData
+    let bodyContent = document.getElementsByClassName('history__table-body')[0]
+
+    let outputText = ""
+    
+    ExpensesData.forEach((dt) => {
+      outputText+= '<div class="history__table-body-row">' +
+        '<p class="history__table-body-row-text">'+ dt.date +'</p>' +
+        '<p class="history__table-body-row-text">'+ dt.description +'</p>'+
+        '<p class="history__table-body-row-text">'+ dt.source +'</p>'+
+        '<p class="history__table-body-row-text history__table-body-row-text_minus">- Rp '+ dt.amount +'</p>' +
+        '</div>'
+    })
+    
+    bodyContent.innerHTML = outputText
+  }
+
+  setIncomeData()
+  
+</script>
+
+</html>

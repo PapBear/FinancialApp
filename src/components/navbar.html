@@ -12,7 +12,7 @@
     <div class="navbar__box">
       <div class="navbar__box-user">
         <div class="navbar__box-user-circle"></div>
-        <p class="navbar__box-user-name">Joshua Hendrawan</p>
+        <p class="navbar__box-user-name">-</p>
       </div>
       <div class="navbar__box-menu">
         <div class="navbar__box-menu-group">
@@ -40,4 +40,18 @@
     </div>
   </div>
 </body>
+
+<script type="text/javascript" src="../../index.js"></script> 
+<script type="text/javascript">
+  
+  function setUserName() {
+    let name = globalUserInfo.name
+    let elementName = document.getElementsByClassName('navbar__box-user-name')[0]
+    elementName.innerHTML = name
+  }
+
+  setUserName()
+
+</script>
+
 </html>
