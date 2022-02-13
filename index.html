@@ -22,8 +22,12 @@
 
   let iframeContent = document.getElementsByClassName('app__iframe-content')[0]
 
-  setGlobalIncomeData()
-  setGlobalExpensesData()
+  // localStorage.clear()
+  if(localStorage.initialLoad == undefined) {
+    setInitialData()
+  } else if(JSON.parse(localStorage.initialLoad) != false) {
+    setInitialData()
+  }
 
   setInterval(() => {
     if(localStorage.globalRoute == "home") {

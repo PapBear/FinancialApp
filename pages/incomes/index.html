@@ -24,23 +24,24 @@
         <div class="incomes__add-box-form">
           <div class="incomes__add-box-form-input">
             <p class="incomes__add-box-form-input-title">Date</p>
-            <input class="incomes__add-box-form-input-date" maxlength="2" type="text" placeholder="DD" id="input-day"> -
-            <input class="incomes__add-box-form-input-date" maxlength="2" type="text" placeholder="MM" id="input-month"> -
-            <input class="incomes__add-box-form-input-date" maxlength="4" type="text" placeholder="YYYY" id="input-year">
+            <input class="incomes__add-box-form-input-date" type="date" placeholder="dd/nn/yy" id="input-date">
           </div>
           <div class="incomes__add-box-form-input">
             <p class="incomes__add-box-form-input-title">Description</p>
-            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Description about your income" id="input-day">
+            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Description about your income" id="input-desc">
           </div>
           <div class="incomes__add-box-form-input">
             <p class="incomes__add-box-form-input-title">Source</p>
-            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Where did you get your income from" id="input-day">
+            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Where did you get your income from" id="input-source">
           </div>
           <div class="incomes__add-box-form-input">
             <p class="incomes__add-box-form-input-title">Amount</p>
-            <input class="incomes__add-box-form-input-normal" type="text" placeholder="The amount of your income" id="input-day">
+            <input class="incomes__add-box-form-input-normal" min="0" type="number" placeholder="The amount of your income" id="input-amt">
           </div>
-          <div class="incomes__add-box-form-button">
+          <div class="incomes__add-box-form-alert">
+            <p class="incomes__add-box-form-alert-text">This is alert message</p>
+          </div>
+          <div class="incomes__add-box-form-button" onclick="submitData()">
             <div class="incomes__add-box-form-button-frame">
               <p class="incomes__add-box-form-button-frame-text">Add</p>
             </div>
@@ -88,12 +89,82 @@
   initialAnimation()
 
   function setUserInfo() {
-    let balance = globalUserInfo.balance
+    let balance = JSON.parse(localStorage.globalUserInfo).balance
+    globalUserInfo = JSON.parse(localStorage.globalUserInfo)
     let elementBalance = document.getElementsByClassName('incomes__add-box-balance-value-text')[0]
-    elementBalance.innerHTML = "Rp. "+balance
+    elementBalance.innerHTML = "Rp. "+ balance
   }
 
   setUserInfo()
+
+  function resetForm() {
+    var dateValue = document.getElementById('input-date')
+    var descValue = document.getElementById('input-desc')
+    var sourceValue = document.getElementById('input-source')
+    var amountValue = document.getElementById('input-amt')
+
+    dateValue.value = ""
+    descValue.value = ""
+    sourceValue.value = ""
+    amountValue.value = ""
+  }
+
+  function showErrorValidation(msg, hide) {
+    let errorElement = document.getElementsByClassName('incomes__add-box-form-alert-text')[0]
+    errorElement.style.display = "block"
+    errorElement.innerHTML = msg
+
+    if(hide == true) {
+      errorElement.style.display = "none"
+      errorElement.innerHTML = ""
+    }
+  }
+
+  function submitData() {
+    let dateValue = document.getElementsByClassName('incomes__add-box-form-input-date')[0].value
+    let descValue = document.getElementsByClassName('incomes__add-box-form-input-normal')[0].value
+    let sourceValue = document.getElementsByClassName('incomes__add-box-form-input-normal')[1].value
+    let amountValue = document.getElementsByClassName('incomes__add-box-form-input-normal')[2].value
+
+    if(dateValue == "") {
+      showErrorValidation("Date must be filled.")
+      return false
+    } else if(descValue == "") {
+      showErrorValidation("Description must be filled.")
+      return false
+    } else if(sourceValue == "") {
+      showErrorValidation("Source must be filled.")
+      return false
+    } else if(amountValue == "") {
+      showErrorValidation("Amount must be filled.")
+      return false
+    } else if(isNaN(amountValue)) {
+      showErrorValidation("Amount should be filled by number only.")
+      return false
+    }
+
+
+    let dataIncome = {}
+    dataIncome = {
+      "date": dateValue,
+      "description": descValue,
+      "source": sourceValue,
+      "amount": amountValue
+    }
+
+    globalUserInfo.balance += Number(amountValue)
+    setGlobalUserInfo()
+    setUserInfo()
+
+    globalIncomeData = JSON.parse(localStorage.globalIncomeData)
+    
+    globalIncomeData.splice(0,0,dataIncome)
+    setGlobalIncomeData()
+    watchIncomeTable = true
+    setIncomeTableWatcher()
+    showErrorValidation("",true)
+    resetForm()
+  }
   
 </script>
 

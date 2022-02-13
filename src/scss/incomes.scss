@@ -100,7 +100,7 @@ p {
             padding: 0px 10px;
             border-radius: 7px;
             height: 30px;
-            width: 55px;
+            width: 90%;
             outline: none;
             border: none;
           }
@@ -113,9 +113,16 @@ p {
             border: none;
           }
         }
+        &-alert {
+          &-text {
+            @include font(16px, 24px, 400, red);
+            display: none;
+          }
+        }
         &-button {
           display: flex;
           justify-content: center;
+          margin-top: 40px;
           &-frame {
             cursor: pointer;
             width: 150px;

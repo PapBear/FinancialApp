@@ -45,6 +45,17 @@
   }
 
   setIncomeData()
+
+  setInterval(() => {
+    if(localStorage.watchIncomeTable) {
+      if(JSON.parse(localStorage.watchIncomeTable) == true) {
+        setIncomeData()
+        watchIncomeTable = false
+        setIncomeTableWatcher()
+      }
+    }
+  }, 1000)
+
   
 </script>
 

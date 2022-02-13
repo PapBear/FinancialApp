@@ -26,7 +26,7 @@
 <script type="text/javascript" src="../../index.js"></script> 
 <script type="text/javascript">
 
-  function setIncomeData() {
+  function setExpenseData() {
     let ExpensesData = JSON.parse(localStorage.globalExpensesData)
     let bodyContent = document.getElementsByClassName('history__table-body')[0]
 
@@ -44,7 +44,17 @@
     bodyContent.innerHTML = outputText
   }
 
-  setIncomeData()
+  setExpenseData()
+
+  setInterval(() => {
+    if(localStorage.watchExpenseTable) {
+      if(JSON.parse(localStorage.watchExpenseTable) == true) {
+        setExpenseData()
+        watchExpenseTable = false
+        setExpenseTableWatcher()
+      }
+    }
+  }, 1000)
   
 </script>
 

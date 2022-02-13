@@ -18,7 +18,7 @@
       <p class="home__balance-title">My Balance</p>
       <div class="home__balance-box">
         <img class="home__balance-box-currencies-img" src="../../src/images/indonesia-icon.png">
-        <p class="home__balance-box-currencies-value">Rp. 200.000.000,00</p>
+        <p class="home__balance-box-currencies-value">-</p>
       </div>
     </div>
     <div class="home__income">
@@ -36,11 +36,11 @@
 <script type="text/javascript">
 
   function setUserInfo() {
-    let name = globalUserInfo.name
+    let name = JSON.parse(localStorage.globalUserInfo).name
     let nameElement = document.getElementsByClassName('home__welcome-text_name')[0]
     nameElement.innerHTML = name
 
-    let balance = globalUserInfo.balance
+    let balance = JSON.parse(localStorage.globalUserInfo).balance
     let elementBalance = document.getElementsByClassName('home__balance-box-currencies-value')[0]
     elementBalance.innerHTML = "Rp. "+balance
   }
