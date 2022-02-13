@@ -4,18 +4,53 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../src/scss/incomes.css">
+  <link rel="stylesheet" href="../../src/scss/expenses.css">
   <title>Financial Apps</title>
 </head>
 <body>
-  <div class="incomes">
-    <div class="incomes__welcome">
-      <p class="incomes__welcome-text">Expenses</p>
-      <div class="incomes__welcome-line"></div>
+  <div class="expenses">
+    <div class="expenses__welcome">
+      <p class="expenses__welcome-text">Expenses</p>
+      <div class="expenses__welcome-line"></div>
     </div>
-    <div class="incomes__history">
-      <p class="incomes__history-title">History</p>
-      <iframe class="incomes__history-iframe" frameBorder ="0" src="../../src/components/expenses-table.html"></iframe>
+    <div class="expenses__add">
+      <div class="expenses__add-box">
+        <div class="expenses__add-box-balance">
+          <p class="expenses__add-box-balance-title">Current Balance</p>
+          <div class="expenses__add-box-balance-value">
+            <p class="expenses__add-box-balance-value-text"></p>
+          </div>
+        </div>
+        <div class="expenses__add-box-form">
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Date</p>
+            <input class="expenses__add-box-form-input-date" maxlength="2" type="text" placeholder="DD" id="input-day"> -
+            <input class="expenses__add-box-form-input-date" maxlength="2" type="text" placeholder="MM" id="input-month"> -
+            <input class="expenses__add-box-form-input-date" maxlength="4" type="text" placeholder="YYYY" id="input-year">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Description</p>
+            <input class="expenses__add-box-form-input-normal" type="text" placeholder="Description about your expenses" id="input-day">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Source</p>
+            <input class="expenses__add-box-form-input-normal" type="text" placeholder="Where did you get your expenses from" id="input-day">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Amount</p>
+            <input class="expenses__add-box-form-input-normal" type="text" placeholder="The amount of your expenses" id="input-day">
+          </div>
+          <div class="expenses__add-box-form-button">
+            <div class="expenses__add-box-form-button-frame">
+              <p class="expenses__add-box-form-button-frame-text">Add</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="expenses__history">
+      <p class="expenses__history-title">History</p>
+      <iframe class="expenses__history-iframe" frameBorder ="0" src="../../src/components/expenses-table.html"></iframe>
     </div>
   </div>
 </body>
@@ -24,10 +59,11 @@
 <script type="text/javascript">
 
   function initialAnimation() {
-    let lineElement = document.getElementsByClassName("incomes__welcome-line")[0]
-    let textElement = document.getElementsByClassName("incomes__welcome-text")[0]
+    let lineElement = document.getElementsByClassName("expenses__welcome-line")[0]
+    let textElement = document.getElementsByClassName("expenses__welcome-text")[0]
 
-    let incomeElemenet = document.getElementsByClassName("incomes__history")[0]
+    let incomeElement = document.getElementsByClassName("expenses__history")[0]
+    let formElement = document.getElementsByClassName("expenses__add")[0]
 
     setTimeout(() => {
       setTimeout(() => {
@@ -38,14 +74,26 @@
     },100)
 
     setTimeout(() => {
-      incomeElemenet.style.opacity = 1
-      incomeElemenet.style.top = "0px"
+      formElement.style.opacity = 1
+      formElement.style.top = "0px"
+      setTimeout(() => {
+        incomeElement.style.opacity = 1
+        incomeElement.style.top = "0px"
+      }, 500)
     }, 1200)
 
 
   }
 
   initialAnimation()
+
+  function setUserInfo() {
+    let balance = globalUserInfo.balance
+    let elementBalance = document.getElementsByClassName('incomes__add-box-balance-value-text')[0]
+    elementBalance.innerHTML = "Rp. "+balance
+  }
+
+  setUserInfo()
   
 </script>
 

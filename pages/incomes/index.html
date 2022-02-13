@@ -13,6 +13,41 @@
       <p class="incomes__welcome-text">Incomes</p>
       <div class="incomes__welcome-line"></div>
     </div>
+    <div class="incomes__add">
+      <div class="incomes__add-box">
+        <div class="incomes__add-box-balance">
+          <p class="incomes__add-box-balance-title">Current Balance</p>
+          <div class="incomes__add-box-balance-value">
+            <p class="incomes__add-box-balance-value-text"></p>
+          </div>
+        </div>
+        <div class="incomes__add-box-form">
+          <div class="incomes__add-box-form-input">
+            <p class="incomes__add-box-form-input-title">Date</p>
+            <input class="incomes__add-box-form-input-date" maxlength="2" type="text" placeholder="DD" id="input-day"> -
+            <input class="incomes__add-box-form-input-date" maxlength="2" type="text" placeholder="MM" id="input-month"> -
+            <input class="incomes__add-box-form-input-date" maxlength="4" type="text" placeholder="YYYY" id="input-year">
+          </div>
+          <div class="incomes__add-box-form-input">
+            <p class="incomes__add-box-form-input-title">Description</p>
+            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Description about your income" id="input-day">
+          </div>
+          <div class="incomes__add-box-form-input">
+            <p class="incomes__add-box-form-input-title">Source</p>
+            <input class="incomes__add-box-form-input-normal" type="text" placeholder="Where did you get your income from" id="input-day">
+          </div>
+          <div class="incomes__add-box-form-input">
+            <p class="incomes__add-box-form-input-title">Amount</p>
+            <input class="incomes__add-box-form-input-normal" type="text" placeholder="The amount of your income" id="input-day">
+          </div>
+          <div class="incomes__add-box-form-button">
+            <div class="incomes__add-box-form-button-frame">
+              <p class="incomes__add-box-form-button-frame-text">Add</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="incomes__history">
       <p class="incomes__history-title">History</p>
       <iframe class="incomes__history-iframe" frameBorder ="0" src="../../src/components/income-table.html"></iframe>
@@ -23,23 +58,12 @@
 <script type="text/javascript" src="../../index.js"></script> 
 <script type="text/javascript">
 
-  // function setUserInfo() {
-  //   let name = globalUserInfo.name
-  //   let nameElement = document.getElementsByClassName('home__welcome-text_name')[0]
-  //   nameElement.innerHTML = name
-
-  //   let balance = globalUserInfo.balance
-  //   let elementBalance = document.getElementsByClassName('home__balance-box-currencies-value')[0]
-  //   elementBalance.innerHTML = "Rp. "+balance
-  // }
-
-  // setUserInfo()
-
   function initialAnimation() {
     let lineElement = document.getElementsByClassName("incomes__welcome-line")[0]
     let textElement = document.getElementsByClassName("incomes__welcome-text")[0]
 
-    let incomeElemenet = document.getElementsByClassName("incomes__history")[0]
+    let incomeElement = document.getElementsByClassName("incomes__history")[0]
+    let formElement = document.getElementsByClassName("incomes__add")[0]
 
     setTimeout(() => {
       setTimeout(() => {
@@ -50,14 +74,26 @@
     },100)
 
     setTimeout(() => {
-      incomeElemenet.style.opacity = 1
-      incomeElemenet.style.top = "0px"
+      formElement.style.opacity = 1
+      formElement.style.top = "0px"
+      setTimeout(() => {
+        incomeElement.style.opacity = 1
+        incomeElement.style.top = "0px"
+      }, 500)
     }, 1200)
 
 
   }
 
   initialAnimation()
+
+  function setUserInfo() {
+    let balance = globalUserInfo.balance
+    let elementBalance = document.getElementsByClassName('incomes__add-box-balance-value-text')[0]
+    elementBalance.innerHTML = "Rp. "+balance
+  }
+
+  setUserInfo()
   
 </script>
 
