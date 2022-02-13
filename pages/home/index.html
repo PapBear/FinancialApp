@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../src/scss/home.css">
+  <title>Financial Apps</title>
+</head>
+<body>
+  <div class="home">
+    <div class="home__welcome">
+      <p class="home__welcome-text">Welcome back,</p>
+      <p class="home__welcome-text">Joshua Hendrawan</p>
+      <div class="home__welcome-line"></div>
+    </div>
+    <div class="home__balance">
+      <p class="home__balance-title">My Balance</p>
+      <div class="home__balance-box">
+        <img class="home__balance-box-currencies-img" src="../../src/images/indonesia-icon.png">
+        <p class="home__balance-box-currencies-value">Rp. 200.000.000,00</p>
+      </div>
+    </div>
+    <div class="home__income">
+      <p class="home__balance-title">My Income</p>
+      <div class="home__balance-box">
+        <img class="home__balance-box-currencies-img" src="../../src/images/indonesia-icon.png">
+        <p class="home__balance-box-currencies-value">Rp. 200.000.000,00</p>
+      </div>
+    </div>
+    <div class="home__expenses">
+      <p class="home__balance-title">My Expenses</p>
+      <div class="home__balance-box">
+        <img class="home__balance-box-currencies-img" src="../../src/images/indonesia-icon.png">
+        <p class="home__balance-box-currencies-value">Rp. 200.000.000,00</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+
+  function initialAnimation() {
+    let lineElement = document.getElementsByClassName("home__welcome-line")[0]
+    let textElement = document.getElementsByClassName("home__welcome-text")
+
+    setTimeout(() => {
+      setTimeout(() => {
+        lineElement.style.width = "100%"
+      },100)
+      for(i = 0; i < textElement.length; i++) {
+        textElement[i].style.opacity = 1
+        textElement[i].style.top = "0px"
+      }
+    },100)
+
+    
+  }
+
+  initialAnimation()
+  
+</script>
+
+</html>
