@@ -12,7 +12,12 @@
 <body>
   <div class="app">
     <div class="app__iframe">
-      <iframe class="app__iframe-navbar" frameBorder ="0" src="src/components/navbar.html"></iframe>
+      <div class="app__iframe-wrapper">
+        <iframe class="app__iframe-navbar" frameBorder ="0" src="src/components/navbar.html"></iframe>
+        <div class="app__iframe-arrow" onclick="openCloseNavbarMobile()">
+          <img class="app__iframe-arrow-img" src="./src/images/chevron.png">
+        </div>
+      </div>
       <iframe class="app__iframe-content" frameBorder ="0" src="pages/home/index.html"></iframe>
     </div>
   </div>
@@ -20,7 +25,35 @@
 
 <script type="text/javascript">
 
+  console.log(window.innerWidth)
+
   let iframeContent = document.getElementsByClassName('app__iframe-content')[0]
+
+  var opened = false
+
+  function openCloseNavbarMobile() {
+    let navbarElement = document.getElementsByClassName('app__iframe-navbar')[0]
+    let arrowElement = document.getElementsByClassName('app__iframe-arrow')[0]
+    let arrowImg = document.getElementsByClassName('app__iframe-arrow-img')[0]
+    if(opened == false) {
+      opened = true
+      navbarElement.style.left = "0px"
+      arrowElement.style.left = "298px"
+      arrowImg.style.transform = "rotate(180deg)"
+    } else {
+      opened = false
+      navbarElement.style.left = "-300px"
+      arrowElement.style.left = "0px"
+      arrowImg.style.transform = "rotate(0deg)"
+    }
+  }
+
+  function autoCloseNavbar() {
+    if(window.innerWidth <= 600) {
+      openend = true
+      openCloseNavbarMobile()
+    }
+  }
 
   // localStorage.clear()
   if(localStorage.initialLoad == undefined) {
@@ -32,16 +65,18 @@
   setInterval(() => {
     if(localStorage.globalRoute == "home") {
       iframeContent.src = "pages/home/index.html"
+      autoCloseNavbar()
       resetRoute()
     } else if(localStorage.globalRoute == "incomes") {
       iframeContent.src = "pages/incomes/index.html"
+      autoCloseNavbar()
       resetRoute()
     } else if(localStorage.globalRoute == "expenses") {
       iframeContent.src = "pages/expenses/index.html"
+      autoCloseNavbar()
       resetRoute()
     }
   }, 10)
-
 
 </script>
 </html>
