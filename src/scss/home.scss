@@ -36,7 +36,11 @@ p {
     }
   }
   &__balance {
+    position: relative;
+    opacity: 0;
+    top: 50px;
     margin-top: 50px;
+    transition: top 0.5s, opacity 0.5s;
     &-title {
       @include font(32px, 40px, 500, #4D4D4D)
     }
@@ -49,6 +53,7 @@ p {
       height: 70px;
       background-color: #FFFFFF;
       border-radius: 10px;
+      box-shadow: 0px 9px 18px 0px rgba(159, 159, 159, 0.36);
       &-currencies {
         &-img {
           width: 50px;
@@ -63,9 +68,58 @@ p {
     }
   }
   &__income {
+    position: relative;
+    opacity: 0;
+    top: 50px;
     margin-top: 50px;
+    transition: top 0.5s, opacity 0.5s;
+    &-table {
+      width: 100%;
+      &-header {
+        display: flex;
+        margin-top: 10px;
+        padding: 0px 10px;
+        border: 1px solid #F2F2F2;
+        background-color: #DCDCDE;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        &-text {
+          flex: 0.25;
+          @include font(16px, 24px, 800, #4D4D4D)
+        }
+      }
+      &-body {
+        max-height: 130px;
+        overflow: overlay;
+        border-bottom: 1px solid #F2F2F2;
+        border-left: 1px solid #F2F2F2;
+        border-right: 1px solid #F2F2F2;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        box-shadow: 0px 9px 18px 0px rgb(159 159 159 / 36%);
+        &-row {
+          display: flex;
+          padding: 0px 10px;
+          background-color: #FFFFFF;
+          &-text {
+            display: flex;
+            flex: 0.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 20px;
+            height: 30px;
+            align-items: center;
+          }
+        }
+      }
+    }
   }
   &__expenses {
+    position: relative;
+    opacity: 0;
+    top: 50px;
     margin-top: 50px;
+    transition: top 0.5s, opacity 0.5s;
   }
 }
