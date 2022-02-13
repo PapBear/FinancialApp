@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../src/scss/incomes.css">
+  <title>Financial Apps</title>
+</head>
+<body>
+  <div class="incomes">
+    <div class="incomes__welcome">
+      <p class="incomes__welcome-text">Incomes</p>
+      <div class="incomes__welcome-line"></div>
+    </div>
+    <div class="incomes__history">
+      <p class="incomes__history-title">History</p>
+      <iframe class="incomes__history-iframe" frameBorder ="0" src="../../src/components/income-table.html"></iframe>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="../../index.js"></script> 
+<script type="text/javascript">
+
+  // function setUserInfo() {
+  //   let name = globalUserInfo.name
+  //   let nameElement = document.getElementsByClassName('home__welcome-text_name')[0]
+  //   nameElement.innerHTML = name
+
+  //   let balance = globalUserInfo.balance
+  //   let elementBalance = document.getElementsByClassName('home__balance-box-currencies-value')[0]
+  //   elementBalance.innerHTML = "Rp. "+balance
+  // }
+
+  // setUserInfo()
+
+  function initialAnimation() {
+    let lineElement = document.getElementsByClassName("incomes__welcome-line")[0]
+    let textElement = document.getElementsByClassName("incomes__welcome-text")[0]
+
+    let incomeElemenet = document.getElementsByClassName("incomes__history")[0]
+
+    setTimeout(() => {
+      setTimeout(() => {
+        lineElement.style.width = "100%"
+      },100)
+      textElement.style.opacity = 1
+      textElement.style.top = "0px"
+    },100)
+
+    setTimeout(() => {
+      incomeElemenet.style.opacity = 1
+      incomeElemenet.style.top = "0px"
+    }, 1200)
+
+
+  }
+
+  initialAnimation()
+  
+</script>
+
+</html>

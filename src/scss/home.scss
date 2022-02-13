@@ -40,7 +40,7 @@ p {
     opacity: 0;
     top: 50px;
     margin-top: 50px;
-    transition: top 0.5s, opacity 0.5s;
+    transition: top 0.3s, opacity 0.3s;
     &-title {
       @include font(32px, 40px, 500, #4D4D4D)
     }
@@ -76,7 +76,7 @@ p {
     opacity: 0;
     top: 50px;
     margin-top: 50px;
-    transition: top 0.5s, opacity 0.5s;
+    transition: top 0.3s, opacity 0.3s;
     &-title {
       @include font(32px, 40px, 500, #4D4D4D)
     }
@@ -131,6 +131,6 @@ p {
     opacity: 0;
     top: 50px;
     margin-top: 50px;
-    transition: top 0.5s, opacity 0.5s;
+    transition: top 0.3s, opacity 0.3s;
   }
 }

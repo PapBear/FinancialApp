@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./src/scss/app.css">
   <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
+  <script type="text/javascript" src="index.js"></script> 
   <title>Financial Apps</title>
 </head>
 <body>
@@ -16,4 +17,27 @@
     </div>
   </div>
 </body>
+
+<script type="text/javascript">
+
+  let iframeContent = document.getElementsByClassName('app__iframe-content')[0]
+
+  setGlobalIncomeData()
+  setGlobalExpensesData()
+
+  setInterval(() => {
+    if(localStorage.globalRoute == "home") {
+      iframeContent.src = "pages/home/index.html"
+      resetRoute()
+    } else if(localStorage.globalRoute == "incomes") {
+      iframeContent.src = "pages/incomes/index.html"
+      resetRoute()
+    } else if(localStorage.globalRoute == "expenses") {
+      iframeContent.src = "pages/expenses/index.html"
+      resetRoute()
+    }
+  }, 10)
+
+
+</script>
 </html>

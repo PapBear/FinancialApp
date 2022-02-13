@@ -27,7 +27,7 @@
 <script type="text/javascript">
 
   function setIncomeData() {
-    let incomeData = globalIncomeData
+    let incomeData = JSON.parse(localStorage.globalIncomeData)
     let bodyContent = document.getElementsByClassName('history__table-body')[0]
 
     let outputText = ""

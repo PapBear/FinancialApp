@@ -11,7 +11,7 @@
   <div class="home">
     <div class="home__welcome">
       <p class="home__welcome-text">Welcome back,</p>
-      <p class="home__welcome-text">Joshua Hendrawan</p>
+      <p class="home__welcome-text home__welcome-text_name">Joshua Hendrawan</p>
       <div class="home__welcome-line"></div>
     </div>
     <div class="home__balance">
@@ -32,7 +32,20 @@
   </div>
 </body>
 
+<script type="text/javascript" src="../../index.js"></script> 
 <script type="text/javascript">
+
+  function setUserInfo() {
+    let name = globalUserInfo.name
+    let nameElement = document.getElementsByClassName('home__welcome-text_name')[0]
+    nameElement.innerHTML = name
+
+    let balance = globalUserInfo.balance
+    let elementBalance = document.getElementsByClassName('home__balance-box-currencies-value')[0]
+    elementBalance.innerHTML = "Rp. "+balance
+  }
+
+  setUserInfo()
 
   function initialAnimation() {
     let lineElement = document.getElementsByClassName("home__welcome-line")[0]
