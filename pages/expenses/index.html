@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../src/scss/expenses.css">
+  <title>Financial Apps</title>
+</head>
+<body>
+  <div class="expenses">
+    <div class="expenses__welcome">
+      <p class="expenses__welcome-text">Expenses</p>
+      <div class="expenses__welcome-line"></div>
+    </div>
+    <div class="expenses__add">
+      <div class="expenses__add-box">
+        <div class="expenses__add-box-balance">
+          <p class="expenses__add-box-balance-title">Current Balance</p>
+          <div class="expenses__add-box-balance-value">
+            <p class="expenses__add-box-balance-value-text"></p>
+          </div>
+        </div>
+        <div class="expenses__add-box-form">
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Date</p>
+            <input class="expenses__add-box-form-input-date" type="date" placeholder="dd/nn/yy" id="input-date">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Description</p>
+            <input class="expenses__add-box-form-input-normal" type="text" placeholder="Description about your income" id="input-desc">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Source</p>
+            <input class="expenses__add-box-form-input-normal" type="text" placeholder="Where did you get your income from" id="input-source">
+          </div>
+          <div class="expenses__add-box-form-input">
+            <p class="expenses__add-box-form-input-title">Amount</p>
+            <input class="expenses__add-box-form-input-normal" min="0" type="number" placeholder="The amount of your income" id="input-amt">
+          </div>
+          <div class="expenses__add-box-form-alert">
+            <p class="expenses__add-box-form-alert-text">This is alert message</p>
+          </div>
+          <div class="expenses__add-box-form-button" onclick="submitData()">
+            <div class="expenses__add-box-form-button-frame">
+              <p class="expenses__add-box-form-button-frame-text">Add</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="expenses__history">
+      <p class="expenses__history-title">History</p>
+      <iframe class="expenses__history-iframe" frameBorder ="0" src="../../src/components/expenses-table.html"></iframe>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="../../index.js"></script> 
+<script type="text/javascript">
+
+  function initialAnimation() {
+    let lineElement = document.getElementsByClassName("expenses__welcome-line")[0]
+    let textElement = document.getElementsByClassName("expenses__welcome-text")[0]
+
+    let incomeElement = document.getElementsByClassName("expenses__history")[0]
+    let formElement = document.getElementsByClassName("expenses__add")[0]
+
+    setTimeout(() => {
+      setTimeout(() => {
+        lineElement.style.width = "100%"
+      },100)
+      textElement.style.opacity = 1
+      textElement.style.top = "0px"
+    },100)
+
+    setTimeout(() => {
+      formElement.style.opacity = 1
+      formElement.style.top = "0px"
+      setTimeout(() => {
+        incomeElement.style.opacity = 1
+        incomeElement.style.top = "0px"
+      }, 500)
+    }, 1200)
+
+
+  }
+
+  initialAnimation()
+
+  function setUserInfo() {
+    let balance = JSON.parse(localStorage.globalUserInfo).balance
+    globalUserInfo = JSON.parse(localStorage.globalUserInfo)
+    let elementBalance = document.getElementsByClassName('expenses__add-box-balance-value-text')[0]
+    elementBalance.innerHTML = "Rp. "+ balance
+  }
+
+  setUserInfo()
+
+  function resetForm() {
+    var dateValue = document.getElementById('input-date')
+    var descValue = document.getElementById('input-desc')
+    var sourceValue = document.getElementById('input-source')
+    var amountValue = document.getElementById('input-amt')
+
+    dateValue.value = ""
+    descValue.value = ""
+    sourceValue.value = ""
+    amountValue.value = ""
+  }
+
+  function showErrorValidation(msg, hide) {
+    let errorElement = document.getElementsByClassName('expenses__add-box-form-alert-text')[0]
+    errorElement.style.display = "block"
+    errorElement.innerHTML = msg
+
+    if(hide == true) {
+      errorElement.style.display = "none"
+      errorElement.innerHTML = ""
+    }
+  }
+
+  function submitData() {
+    let dateValue = document.getElementsByClassName('expenses__add-box-form-input-date')[0].value
+    let descValue = document.getElementsByClassName('expenses__add-box-form-input-normal')[0].value
+    let sourceValue = document.getElementsByClassName('expenses__add-box-form-input-normal')[1].value
+    let amountValue = document.getElementsByClassName('expenses__add-box-form-input-normal')[2].value
+
+    if(dateValue == "") {
+      showErrorValidation("Date must be filled.")
+      return false
+    } else if(descValue == "") {
+      showErrorValidation("Description must be filled.")
+      return false
+    } else if(sourceValue == "") {
+      showErrorValidation("Source must be filled.")
+      return false
+    } else if(amountValue == "") {
+      showErrorValidation("Amount must be filled.")
+      return false
+    } else if(isNaN(amountValue)) {
+      showErrorValidation("Amount should be filled by number only.")
+      return false
+    }
+
+
+    let dataExpenses = {}
+    dataExpenses = {
+      "date": dateValue,
+      "description": descValue,
+      "source": sourceValue,
+      "amount": amountValue
+    }
+
+
+    let calculateMinus = globalUserInfo.balance -= Number(amountValue)
+    console.log(calculateMinus)
+    globalUserInfo.balance = calculateMinus
+    console.log(globalUserInfo.balance)
+    setGlobalUserInfo()
+    setUserInfo()
+
+    globalExpensesData = JSON.parse(localStorage.globalExpensesData)
+    
+    globalExpensesData.splice(0,0,dataExpenses)
+    setGlobalExpensesData()
+    watchExpenseTable = true
+    setExpenseTableWatcher()
+    showErrorValidation("",true)
+    resetForm()
+  }
+  
+</script>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "financialapp",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PapBear/FinancialApp.git"
+  },
+  "author": "PapBear",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PapBear/FinancialApp/issues"
+  },
+  "homepage": "https://github.com/PapBear/FinancialApp#readme",
+  "devDependencies": {
+    "sass": "^1.49.7"
+  }
+}
