@@ -43,6 +43,10 @@
     let balance = JSON.parse(localStorage.globalUserInfo).balance
     let elementBalance = document.getElementsByClassName('home__balance-box-currencies-value')[0]
     elementBalance.innerHTML = "Rp. "+balance
+
+    if(balance < 0) {
+      elementBalance.style.color = "red"
+    }
   }
 
   setUserInfo()

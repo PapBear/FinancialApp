@@ -63,3 +63,32 @@ p {
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .history {
+    &__table {
+      margin-top: 10px;
+      &-header {
+        display: none;
+      }
+      &-body {
+        &-row {
+          flex-direction: column;
+          padding: 10px;
+          position: relative;
+          border-bottom: 2px solid #F2F2F2;
+          &-text {
+            &_plus {
+              position: absolute;
+              right: 0px;
+            }
+            &_minus {
+              position: absolute;
+              right: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
