@@ -10,6 +10,11 @@ npm install
 npm run build
 ```
 
+# Run Project
+```
+serve
+```
+
 # Project demo
 ```
 https://financial-app-nine.vercel.app/
